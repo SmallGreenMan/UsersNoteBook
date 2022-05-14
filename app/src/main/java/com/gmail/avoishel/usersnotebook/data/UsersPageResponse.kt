@@ -1,16 +1,10 @@
 package com.gmail.avoishel.usersnotebook.data
 
-import android.icu.text.IDNA
+data class UsersPageResponse(
 
-class UsersPageRespose(
-val info: IDNA.Info = IDNA.Info(),
-val result: List<GetCharacterByIdResponse> = emptyList()
-) {
-    data class Info(
-        val page: Int = 0,
-        val per_page: Int = 0,
-        val total: String? = null,
-        val prev: String? = null
-    ){
-    }
-}
+    val page: Int = 0,
+    val per_page: Int = 0,
+    val total: Int = 0,
+    val total_pages: Int = 0,
+    val data: List<UserModel> = emptyList()
+)
