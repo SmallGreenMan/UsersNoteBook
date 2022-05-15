@@ -22,8 +22,8 @@ class MainActivityViewModel: ViewModel() {
     }
 
     fun makeApiCall(){
-        val retrofitInstance = RetroInstance.getRetrofitInstance()
-        val retrofitService = retrofitInstance.create(RetroServiceInterface::class.java)
+        //val retrofitInstance = RetroInstance.getRetrofitInstance()
+        //val retrofitService = retrofitInstance.create(RetroServiceInterface::class.java)
         val call = retrofitService.getUsersList()
 
         call.enqueue(object : Callback<UsersPageResponse>{

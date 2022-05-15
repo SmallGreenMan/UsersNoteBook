@@ -21,26 +21,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initRecyclerView()
-        initViewModel()
+//        initRecyclerView()
+//        initViewModel()
     }
 
-    private fun initRecyclerView(){
-        binding.usersListRecyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerAdapter = UsersListAdapter(this)
-        binding.usersListRecyclerView.adapter = recyclerAdapter
-    }
-
-    private fun initViewModel(){
-        val viewModel : MainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        viewModel.getLiveDataObserver().observe(this, Observer {
-            if (it != null){
-                recyclerAdapter.setUserList(it.data)
-                recyclerAdapter.notifyDataSetChanged()
-            } else {
-                Toast.makeText(this,"Error in getting users data", Toast.LENGTH_LONG).show()
-            }
-        })
-        viewModel.makeApiCall()
-    }
+//    private fun initRecyclerView(){
+//        binding.usersListRecyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerAdapter = UsersListAdapter(this)
+//        binding.usersListRecyclerView.adapter = recyclerAdapter
+//    }
+//
+//    private fun initViewModel(){
+//        val viewModel : MainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+//        viewModel.getLiveDataObserver().observe(this, Observer {
+//            if (it != null){
+//                recyclerAdapter.setUserList(it.data)
+//                recyclerAdapter.notifyDataSetChanged()
+//            } else {
+//                Toast.makeText(this,"Error in getting users data", Toast.LENGTH_LONG).show()
+//            }
+//        })
+//        viewModel.makeApiCall()
+//    }
 }
