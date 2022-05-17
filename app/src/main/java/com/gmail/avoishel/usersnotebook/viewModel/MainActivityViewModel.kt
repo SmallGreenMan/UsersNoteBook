@@ -1,17 +1,8 @@
 package com.gmail.avoishel.usersnotebook.viewModel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gmail.avoishel.usersnotebook.data.UserModel
-import com.gmail.avoishel.usersnotebook.data.UsersPageResponse
-import com.gmail.avoishel.usersnotebook.retrofit.RetroInstance
-import com.gmail.avoishel.usersnotebook.retrofit.RetroServiceInterface
-import com.gmail.avoishel.usersnotebook.ui.UserListViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.gmail.avoishel.usersnotebook.models.UsersPageResponse
 
 class MainActivityViewModel: ViewModel() {
 

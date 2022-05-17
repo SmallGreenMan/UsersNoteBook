@@ -6,15 +6,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text2"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="50sp"
+        android:layout_marginTop="32dp"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/headerImageView"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="?colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/aliveTextView"
+        app:layout_constraintTop_toBottomOf="@id/aliveTextView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/nameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnBackground"
+        android:layout_margin="16dp"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        tools:text="FirstName SecondName"
+        android:textStyle="bold"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/aliveTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/nameTextView"
+        app:layout_constraintTop_toBottomOf="@id/nameTextView"
+        tools:text="Alive"
+        android:textStyle="italic"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/emailLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnBackground"
+        android:layout_marginTop="32dp"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        android:text="Email"
+        android:textStyle="italic"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/emailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/emailLabelTextView"
+        app:layout_constraintTop_toBottomOf="@id/emailLabelTextView"
+        tools:text="mail@gmail.com"
+        android:textStyle="italic"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/telephoneLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnBackground"
+        android:layout_marginTop="32dp"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/emailTextView"
+        app:layout_constraintTop_toBottomOf="@id/emailTextView"
+        android:text="Telephone"
+        android:textStyle="italic"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/telephoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/telephoneLabelTextView"
+        app:layout_constraintTop_toBottomOf="@id/telephoneLabelTextView"
+        tools:text="None"
+        android:textStyle="italic"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

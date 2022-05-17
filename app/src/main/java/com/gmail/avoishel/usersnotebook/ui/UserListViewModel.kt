@@ -3,7 +3,7 @@ package com.gmail.avoishel.usersnotebook.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gmail.avoishel.usersnotebook.data.UsersPageResponse
+import com.gmail.avoishel.usersnotebook.models.UsersPageResponse
 import com.gmail.avoishel.usersnotebook.repository.UserRepository
 import com.gmail.avoishel.usersnotebook.utility.Resource
 import kotlinx.coroutines.launch

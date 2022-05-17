@@ -1,7 +1,6 @@
 package com.gmail.avoishel.usersnotebook.adapter
 
-import android.app.Activity
-import android.app.TabActivity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +10,13 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.avoishel.usersnotebook.R
-import com.gmail.avoishel.usersnotebook.data.UserModel
+import com.gmail.avoishel.usersnotebook.models.UserModel
 import com.squareup.picasso.Picasso
 
 class UsersListAdapter(): RecyclerView.Adapter<UsersListAdapter.UserItemViewHolder>() {
 
     private var userList: List<UserModel>? = null
+    private var onItemClickListener: ((UserModel) -> Unit)? = null
 
     fun setUserList(userList: List<UserModel>?){
         this.userList = userList
@@ -39,9 +39,11 @@ class UsersListAdapter(): RecyclerView.Adapter<UsersListAdapter.UserItemViewHold
                 //.error(R.drawable.ic_placeholder_error_foreground)
                 .into(imgView)
 
-            setOnItemClickListener {
+            itemView.setOnClickListener {
+            //setOnItemClickListener {
                 onItemClickListener?.let{ it(user) }
             }
+
         }
     }
 
@@ -51,7 +53,6 @@ class UsersListAdapter(): RecyclerView.Adapter<UsersListAdapter.UserItemViewHold
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((UserModel) -> Unit)? = null
     fun setOnItemClickListener (listener: (UserModel) -> Unit){
         onItemClickListener = listener
     }
@@ -62,6 +63,13 @@ class UsersListAdapter(): RecyclerView.Adapter<UsersListAdapter.UserItemViewHold
         val firstNameView = view.findViewById<TextView>(R.id.firstName)
         val lastNameView = view.findViewById<TextView>(R.id.lastName)
         val imgView = view.findViewById<ImageView>(R.id.userImage)
+
+//        init {
+//            view.setOnClickListener {
+//                Log.i("TAG", "_----_---> CLICK!!!")
+//                //onItemClickListener?.invoke(userList[adapterPosition])
+//            }
+//        }
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<UserModel>(){

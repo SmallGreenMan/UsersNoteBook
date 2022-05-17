@@ -1,6 +1,6 @@
-package com.gmail.avoishel.usersnotebook.data
+package com.gmail.avoishel.usersnotebook.models
 
-import java.net.URL
+import java.io.Serializable
 
 data class UserModel(
     val id: Int?,
@@ -8,4 +8,4 @@ data class UserModel(
     val first_name: String?,
     val last_name: String?,
     val avatar: String?
-)
+) : Serializable

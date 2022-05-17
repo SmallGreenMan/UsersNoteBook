@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.adapter.UsersListAdapter
@@ -56,8 +57,19 @@ class UserListFragment: Fragment() {
         val userListProviderFactory = UserListViewModelProviderFactory(userRepository)
         userListViewModel = ViewModelProvider(this, userListProviderFactory).get(UserListViewModel::class.java)
 
-
         setupRecyclerView()
+
+        userListAdapter.setOnItemClickListener {
+            Log.i(TAG, "-----> Click on rv item !!!")
+            Toast.makeText(context, "${it.first_name} ${it.last_name}", Toast.LENGTH_LONG).show()
+            val bundle = Bundle().apply {
+                putSerializable("user", it)
+            }
+            findNavController().navigate(
+                R.id.action_userListFragment_to_userInfoFragment,
+                bundle
+            )
+        }
 
         userListViewModel.userList.observe(viewLifecycleOwner, Observer { response ->
             when(response){
