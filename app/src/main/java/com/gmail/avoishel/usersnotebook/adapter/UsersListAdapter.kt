@@ -14,7 +14,7 @@ import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.data.UserModel
 import com.squareup.picasso.Picasso
 
-class UsersListAdapter(val activity: Activity): RecyclerView.Adapter<UsersListAdapter.UserItemViewHolder>() {
+class UsersListAdapter(): RecyclerView.Adapter<UsersListAdapter.UserItemViewHolder>() {
 
     private var userList: List<UserModel>? = null
 
