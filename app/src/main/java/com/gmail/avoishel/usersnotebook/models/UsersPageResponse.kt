@@ -6,5 +6,5 @@ data class UsersPageResponse(
     val per_page: Int = 0,
     val total: Int = 0,
     val total_pages: Int = 0,
-    val data: List<UserModel> = emptyList()
+    val data: MutableList<UserModel>
 )

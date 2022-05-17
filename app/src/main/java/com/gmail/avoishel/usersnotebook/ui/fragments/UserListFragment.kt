@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.adapter.UsersListAdapter
 import com.gmail.avoishel.usersnotebook.databinding.UserListFragmentBinding
@@ -20,6 +22,7 @@ import com.gmail.avoishel.usersnotebook.repository.UserRepository
 import com.gmail.avoishel.usersnotebook.ui.MainActivity
 import com.gmail.avoishel.usersnotebook.ui.UserListViewModel
 import com.gmail.avoishel.usersnotebook.ui.UserListViewModelProviderFactory
+import com.gmail.avoishel.usersnotebook.utility.Constants.Companion.QUERY_PAGE_SIZE
 import com.gmail.avoishel.usersnotebook.utility.Resource
 
 class UserListFragment: Fragment() {
@@ -29,6 +32,45 @@ class UserListFragment: Fragment() {
 
     lateinit var userListViewModel: UserListViewModel
     lateinit var userListAdapter: UsersListAdapter
+
+    var isLoading = false
+    var isLastPage = false
+    var isScrolling = false
+
+    val scrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+                isScrolling = true
+            }
+        }
+
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+            val visibleItemCount = layoutManager.childCount
+            val totalItemCount = layoutManager.itemCount
+
+            val isNotLoadingAndNoLastPage = !isLoading && !isLastPage
+            val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
+            val isNotAtBeginning = firstVisibleItemPosition >= 0
+            val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
+            val shouldPaginate = isNotLoadingAndNoLastPage && isAtLastItem && isNotAtBeginning &&
+                    isTotalMoreThanVisible && isScrolling
+
+            Log.i("TAG","-----> ScrollEnd! isLoading = $isLoading, isLastPage = $isLastPage, isScrolling = $isScrolling, " +
+                    "isNotLoadingAndNoLastPage = $isNotLoadingAndNoLastPage, isAtLastItem = $isAtLastItem, shouldPaginate = $shouldPaginate")
+
+            if (shouldPaginate){
+                userListViewModel.getUserList()
+                isScrolling = false
+            } else {
+                binding.rvUsersList.setPadding(0,0,0,0) // !!!!!!!!!!!!!!!!
+            }
+        }
+    }
 
     val TAG = "UserListFragment"
 
@@ -76,7 +118,10 @@ class UserListFragment: Fragment() {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { userListResponse ->
-                        userListAdapter.differ.submitList(userListResponse.data)
+                        userListAdapter.differ.submitList(userListResponse.data.toList())
+                        val totalPages = userListResponse.total_pages
+                        isLastPage = userListViewModel.userListPage == totalPages
+
                     }
                 }
                 is Resource.Error -> {
@@ -96,10 +141,12 @@ class UserListFragment: Fragment() {
 
     private fun hideProgressBar() {
         binding.paginationProgressBar.visibility = View.INVISIBLE
+        isLoading = false
     }
 
     private fun showProgressBar() {
         binding.paginationProgressBar.visibility = View.VISIBLE
+        isLoading = true
     }
 
 
@@ -108,6 +155,7 @@ class UserListFragment: Fragment() {
         binding.rvUsersList.apply{
             adapter = userListAdapter
             layoutManager = LinearLayoutManager(activity)
+            addOnScrollListener(this@UserListFragment.scrollListener)
         }
     }
 }

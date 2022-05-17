@@ -1,5 +1,6 @@
 package com.gmail.avoishel.usersnotebook.ui
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,6 +16,7 @@ class UserListViewModel(
 
     val userList: MutableLiveData<Resource<UsersPageResponse>> = MutableLiveData()
     var userListPage = 1
+    var userListResponse: UsersPageResponse? = null
 
     init {
         getUserList()
@@ -22,6 +24,7 @@ class UserListViewModel(
 
     fun getUserList() = viewModelScope.launch {
         userList.postValue(Resource.Loading())
+        Log.i("UserListViewModel", "-----> try to get userList page = $userListPage")
         val resource = userRepository.getUserList(userListPage)
         userList.postValue(handleUserListResponse(resource))
     }
@@ -29,7 +32,16 @@ class UserListViewModel(
     private fun handleUserListResponse(response: Response<UsersPageResponse>) : Resource<UsersPageResponse> {
         if(response.isSuccessful){
             response.body()?.let {
-                return Resource.Success(it)
+                userListPage++
+                if (userListResponse == null){
+                    userListResponse = it
+                    //userListPage = 1
+                } else {
+                    val oldUsers = userListResponse?.data
+                    val newUsers = it.data
+                    oldUsers?.addAll(newUsers)
+                }
+                return Resource.Success(userListResponse ?: it)
             }
         }
         return Resource.Error(response.message())
