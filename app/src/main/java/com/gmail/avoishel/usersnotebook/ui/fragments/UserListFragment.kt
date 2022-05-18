@@ -43,6 +43,7 @@ class UserListFragment: Fragment() {
             if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
                 isScrolling = true
             }
+            Log.i("TAG","-----> onScrollStateChanged! stateIs = $newState, isLoading = $isLoading, isLastPage = $isLastPage, isScrolling = $isScrolling")
         }
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -120,7 +121,7 @@ class UserListFragment: Fragment() {
                     response.data?.let { userListResponse ->
                         userListAdapter.differ.submitList(userListResponse.data.toList())
                         val totalPages = userListResponse.total_pages
-                        isLastPage = userListViewModel.userListPage == totalPages
+                        isLastPage = userListViewModel.userListPage - 1 == totalPages
 
                     }
                 }
