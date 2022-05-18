@@ -6,21 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.adapter.UsersListAdapter
 import com.gmail.avoishel.usersnotebook.databinding.UserListFragmentBinding
 import com.gmail.avoishel.usersnotebook.repository.UserRepository
-import com.gmail.avoishel.usersnotebook.ui.MainActivity
 import com.gmail.avoishel.usersnotebook.ui.UserListViewModel
 import com.gmail.avoishel.usersnotebook.ui.UserListViewModelProviderFactory
 import com.gmail.avoishel.usersnotebook.utility.Constants.Companion.QUERY_PAGE_SIZE
@@ -81,13 +77,13 @@ class UserListFragment : Fragment() {
         }
     }
 
-    val TAG = "UserListFragment"
+    private val TAG = "UserListFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = UserListFragmentBinding.inflate(inflater, container, false)
         return this.binding.root
     }

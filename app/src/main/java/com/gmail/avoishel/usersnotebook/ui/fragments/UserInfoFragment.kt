@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.databinding.UserInfoFragmentBinding
-import com.gmail.avoishel.usersnotebook.databinding.UserListFragmentBinding
 import com.gmail.avoishel.usersnotebook.models.UserModel
 import com.squareup.picasso.Picasso
 
@@ -17,13 +16,13 @@ class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
     private var _binding: UserInfoFragmentBinding? = null
     private val binding get() = _binding!!
 
-    val args: UserInfoFragmentArgs by navArgs()
+    private val args: UserInfoFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = UserInfoFragmentBinding.inflate(inflater, container, false)
         return this.binding.root
     }

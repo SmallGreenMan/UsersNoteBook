@@ -14,7 +14,7 @@ class RetroInstance {
                 .build()
         }
 
-        val api by lazy {
+        val api: RetroServiceInterface by lazy {
             retrofit.create(RetroServiceInterface::class.java)
         }
 

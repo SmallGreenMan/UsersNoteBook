@@ -25,8 +25,7 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
         parent: ViewGroup,
         viewType: Int
     ): UsersListAdapter.UserItemViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.user_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.user_list_item, parent, false)
         return UserItemViewHolder(view)
     }
 
@@ -57,8 +56,8 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
     }
 
     inner class UserItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name = view.findViewById<TextView>(R.id.nameTextView)
-        val imgView = view.findViewById<ImageView>(R.id.userImage)
+        val name: TextView = view.findViewById<TextView>(R.id.nameTextView)
+        val imgView: ImageView = view.findViewById<ImageView>(R.id.userImage)
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<UserModel>() {
