@@ -18,11 +18,5 @@ class RetroInstance {
             retrofit.create(RetroServiceInterface::class.java)
         }
 
-//        fun getRetrofitInstance(): Retrofit {
-//            return Retrofit.Builder()
-//                .baseUrl(BASE_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build()
-//        }
     }
 }

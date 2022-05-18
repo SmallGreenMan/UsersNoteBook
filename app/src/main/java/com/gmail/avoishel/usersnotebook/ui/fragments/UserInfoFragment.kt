@@ -46,8 +46,8 @@ class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
 
         Picasso.get()
             .load(user.avatar)
-            //.placeholder(R.drawable.ic_placeholder_foreground)
-            //.error(R.drawable.ic_placeholder_error_foreground)
+            .placeholder(R.drawable.ic_placeholder_foreground)
+            .error(R.drawable.ic_placeholder_error_foreground)
             .into(binding.headerImageView)
     }
 }
