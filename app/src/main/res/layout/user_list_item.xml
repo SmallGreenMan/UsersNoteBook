@@ -1,51 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="220dp">
 
-    <ImageView
-        android:id="@+id/userImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        tools:src="@tools:sample/avatars"
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/userImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/firstName"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/nameTextView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_margin="10dp"
-            android:textColor="@color/black"
+            android:background="#AA000000"
+            android:maxLines="1"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="@tools:sample/first_names"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="FirstName SecondName" />
 
-        <TextView
-            android:id="@+id/lastName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_margin="10dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            tools:text="@tools:sample/last_names"
-            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
 
 
 
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+<!--<androidx.appcompat.widget.LinearLayoutCompat-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="horizontal">-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/userImage"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        tools:src="@tools:sample/avatars"-->
+<!--        />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/firstName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="20sp"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textStyle="bold"-->
+<!--        tools:text="@tools:sample/first_names"-->
+<!--        vertical-->
+<!--        />-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        >-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/firstName"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textStyle="bold"-->
+<!--            tools:text="@tools:sample/first_names"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/lastName"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textStyle="bold"-->
+<!--            tools:text="@tools:sample/last_names"-->
+<!--            />-->
+
+<!--    </LinearLayout>-->
+
+
+
+
+<!--</androidx.appcompat.widget.LinearLayoutCompat>-->

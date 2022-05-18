@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.avoishel.usersnotebook.R
@@ -25,7 +26,7 @@ import com.gmail.avoishel.usersnotebook.ui.UserListViewModelProviderFactory
 import com.gmail.avoishel.usersnotebook.utility.Constants.Companion.QUERY_PAGE_SIZE
 import com.gmail.avoishel.usersnotebook.utility.Resource
 
-class UserListFragment: Fragment() {
+class UserListFragment : Fragment() {
 
     private var _binding: UserListFragmentBinding? = null
     private val binding get() = _binding!!
@@ -40,16 +41,20 @@ class UserListFragment: Fragment() {
     val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                 isScrolling = true
             }
-            Log.i("TAG","-----> onScrollStateChanged! stateIs = $newState, isLoading = $isLoading, isLastPage = $isLastPage, isScrolling = $isScrolling")
+            Log.i(
+                "TAG",
+                "-----> onScrollStateChanged! stateIs = $newState, isLoading = $isLoading, isLastPage = $isLastPage, isScrolling = $isScrolling"
+            )
         }
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 
-            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val layoutManager =
+                recyclerView.layoutManager as GridLayoutManager //LinearLayoutManager
             val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
             val visibleItemCount = layoutManager.childCount
             val totalItemCount = layoutManager.itemCount
@@ -61,14 +66,17 @@ class UserListFragment: Fragment() {
             val shouldPaginate = isNotLoadingAndNoLastPage && isAtLastItem && isNotAtBeginning &&
                     isTotalMoreThanVisible && isScrolling
 
-            Log.i("TAG","-----> ScrollEnd! isLoading = $isLoading, isLastPage = $isLastPage, isScrolling = $isScrolling, " +
-                    "isNotLoadingAndNoLastPage = $isNotLoadingAndNoLastPage, isAtLastItem = $isAtLastItem, shouldPaginate = $shouldPaginate")
+            Log.i(
+                "TAG",
+                "-----> ScrollEnd! isLoading = $isLoading, isLastPage = $isLastPage, isScrolling = $isScrolling, " +
+                        "isNotLoadingAndNoLastPage = $isNotLoadingAndNoLastPage, isAtLastItem = $isAtLastItem, shouldPaginate = $shouldPaginate"
+            )
 
-            if (shouldPaginate){
+            if (shouldPaginate) {
                 userListViewModel.getUserList()
                 isScrolling = false
             } else {
-                binding.rvUsersList.setPadding(0,0,0,0) // !!!!!!!!!!!!!!!!
+                binding.rvUsersList.setPadding(0, 0, 0, 0) // !!!!!!!!!!!!!!!!
             }
         }
     }
@@ -92,13 +100,10 @@ class UserListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-         //userListViewModel = (activity as MainActivity).viewModel
-
-        //userListViewModel = ViewModelProvider(this).get(UserListViewModel::class.java)
-
         val userRepository = UserRepository()
         val userListProviderFactory = UserListViewModelProviderFactory(userRepository)
-        userListViewModel = ViewModelProvider(this, userListProviderFactory).get(UserListViewModel::class.java)
+        userListViewModel =
+            ViewModelProvider(this, userListProviderFactory).get(UserListViewModel::class.java)
 
         setupRecyclerView()
 
@@ -115,7 +120,7 @@ class UserListFragment: Fragment() {
         }
 
         userListViewModel.userList.observe(viewLifecycleOwner, Observer { response ->
-            when(response){
+            when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { userListResponse ->
@@ -128,7 +133,11 @@ class UserListFragment: Fragment() {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Toast.makeText(this.context, "Error in getting data from server", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            this.context,
+                            "Error in getting data from server",
+                            Toast.LENGTH_LONG
+                        ).show()
                         Log.e(TAG, "----------> Error in getting data from server: $message")
                     }
                 }
@@ -151,11 +160,11 @@ class UserListFragment: Fragment() {
     }
 
 
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView() {
         userListAdapter = UsersListAdapter()
-        binding.rvUsersList.apply{
+        binding.rvUsersList.apply {
             adapter = userListAdapter
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = GridLayoutManager(activity, 2)
             addOnScrollListener(this@UserListFragment.scrollListener)
         }
     }

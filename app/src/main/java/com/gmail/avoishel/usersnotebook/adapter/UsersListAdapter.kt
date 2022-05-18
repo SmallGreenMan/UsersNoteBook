@@ -30,8 +30,8 @@ class UsersListAdapter(): RecyclerView.Adapter<UsersListAdapter.UserItemViewHold
     override fun onBindViewHolder(holder: UsersListAdapter.UserItemViewHolder, position: Int) {
         val user = differ.currentList[position]
         holder.apply {
-            firstNameView.text = user.first_name
-            lastNameView.text = user.last_name
+            name.text = "${user.first_name} ${user.last_name}"
+            //lastNameView.text = user.last_name
 
             Picasso.get()
                 .load(user.avatar)
@@ -60,8 +60,8 @@ class UsersListAdapter(): RecyclerView.Adapter<UsersListAdapter.UserItemViewHold
 
 
     inner class UserItemViewHolder(view : View): RecyclerView.ViewHolder(view){
-        val firstNameView = view.findViewById<TextView>(R.id.firstName)
-        val lastNameView = view.findViewById<TextView>(R.id.lastName)
+        val name = view.findViewById<TextView>(R.id.nameTextView)
+        //val lastNameView = view.findViewById<TextView>(R.id.lastName)
         val imgView = view.findViewById<ImageView>(R.id.userImage)
 
 //        init {
