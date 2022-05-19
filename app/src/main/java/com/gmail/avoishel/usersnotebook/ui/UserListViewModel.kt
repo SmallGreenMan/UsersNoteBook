@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.avoishel.usersnotebook.models.UsersPageResponse
 import com.gmail.avoishel.usersnotebook.repository.UserRepository
-import com.gmail.avoishel.usersnotebook.utility.Resource
+import com.gmail.avoishel.usersnotebook.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 

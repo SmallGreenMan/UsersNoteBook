@@ -19,8 +19,8 @@ import com.gmail.avoishel.usersnotebook.databinding.UserListFragmentBinding
 import com.gmail.avoishel.usersnotebook.repository.UserRepository
 import com.gmail.avoishel.usersnotebook.ui.UserListViewModel
 import com.gmail.avoishel.usersnotebook.ui.UserListViewModelProviderFactory
-import com.gmail.avoishel.usersnotebook.utility.Constants.Companion.QUERY_PAGE_SIZE
-import com.gmail.avoishel.usersnotebook.utility.Resource
+import com.gmail.avoishel.usersnotebook.utils.Constants.Companion.QUERY_PAGE_SIZE
+import com.gmail.avoishel.usersnotebook.utils.Resource
 
 class UserListFragment : Fragment() {
 
