@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,13 +22,18 @@ import com.gmail.avoishel.usersnotebook.ui.UserListViewModel
 import com.gmail.avoishel.usersnotebook.ui.UserListViewModelProviderFactory
 import com.gmail.avoishel.usersnotebook.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.gmail.avoishel.usersnotebook.utils.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserListFragment : Fragment() {
 
     private var _binding: UserListFragmentBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var userListViewModel: UserListViewModel
+    val userListViewModel: UserListViewModel by lazy {
+        ViewModelProvider(this).get(UserListViewModel::class.java)
+    }
+
     lateinit var userListAdapter: UsersListAdapter
 
     var isLoading = false
@@ -96,10 +102,11 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userRepository = UserRepository()
-        val userListProviderFactory = UserListViewModelProviderFactory(userRepository)
-        userListViewModel =
-            ViewModelProvider(this, userListProviderFactory).get(UserListViewModel::class.java)
+        // val userRepository = UserRepository()
+        // val userListProviderFactory = UserListViewModelProviderFactory(userRepository)
+        // userListViewModel =
+        //    ViewModelProvider(this, userListProviderFactory).get(UserListViewModel::class.java)
+
 
         setupRecyclerView()
 

@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.models.UserModel
+import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHolder>() {
 
@@ -33,6 +36,8 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
         val user = differ.currentList[position]
         holder.apply {
             name.text = "${user.first_name} ${user.last_name}"
+
+//            picassoUtil.loadImage(user.avatar!!,imgView)
 
             Picasso.get()
                 .load(user.avatar)
