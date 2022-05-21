@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.models.UserModel
+import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHolder>() {
 
@@ -25,8 +28,7 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
         parent: ViewGroup,
         viewType: Int
     ): UsersListAdapter.UserItemViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.user_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.user_list_item, parent, false)
         return UserItemViewHolder(view)
     }
 
@@ -34,6 +36,8 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
         val user = differ.currentList[position]
         holder.apply {
             name.text = "${user.first_name} ${user.last_name}"
+
+//            picassoUtil.loadImage(user.avatar!!,imgView)
 
             Picasso.get()
                 .load(user.avatar)
@@ -57,8 +61,8 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
     }
 
     inner class UserItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name = view.findViewById<TextView>(R.id.nameTextView)
-        val imgView = view.findViewById<ImageView>(R.id.userImage)
+        val name: TextView = view.findViewById<TextView>(R.id.nameTextView)
+        val imgView: ImageView = view.findViewById<ImageView>(R.id.userImage)
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<UserModel>() {

@@ -1,4 +1,4 @@
-package com.gmail.avoishel.usersnotebook.utility
+package com.gmail.avoishel.usersnotebook.utils
 
 sealed class Resource<T>(
     val data: T? = null,

@@ -6,32 +6,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.adapter.UsersListAdapter
 import com.gmail.avoishel.usersnotebook.databinding.UserListFragmentBinding
 import com.gmail.avoishel.usersnotebook.repository.UserRepository
-import com.gmail.avoishel.usersnotebook.ui.MainActivity
 import com.gmail.avoishel.usersnotebook.ui.UserListViewModel
 import com.gmail.avoishel.usersnotebook.ui.UserListViewModelProviderFactory
-import com.gmail.avoishel.usersnotebook.utility.Constants.Companion.QUERY_PAGE_SIZE
-import com.gmail.avoishel.usersnotebook.utility.Resource
+import com.gmail.avoishel.usersnotebook.utils.Constants.Companion.QUERY_PAGE_SIZE
+import com.gmail.avoishel.usersnotebook.utils.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserListFragment : Fragment() {
 
     private var _binding: UserListFragmentBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var userListViewModel: UserListViewModel
+    val userListViewModel: UserListViewModel by lazy {
+        ViewModelProvider(this).get(UserListViewModel::class.java)
+    }
+
     lateinit var userListAdapter: UsersListAdapter
 
     var isLoading = false
@@ -81,13 +83,13 @@ class UserListFragment : Fragment() {
         }
     }
 
-    val TAG = "UserListFragment"
+    private val TAG = "UserListFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = UserListFragmentBinding.inflate(inflater, container, false)
         return this.binding.root
     }
@@ -100,10 +102,11 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userRepository = UserRepository()
-        val userListProviderFactory = UserListViewModelProviderFactory(userRepository)
-        userListViewModel =
-            ViewModelProvider(this, userListProviderFactory).get(UserListViewModel::class.java)
+        // val userRepository = UserRepository()
+        // val userListProviderFactory = UserListViewModelProviderFactory(userRepository)
+        // userListViewModel =
+        //    ViewModelProvider(this, userListProviderFactory).get(UserListViewModel::class.java)
+
 
         setupRecyclerView()
 
