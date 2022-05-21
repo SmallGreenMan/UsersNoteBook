@@ -32,5 +32,7 @@ class RetroInstance {
         val api: RetroServiceInterface by lazy {
             retrofit.create(RetroServiceInterface::class.java)
         }
+
+        val apiClient = ApiClient(api)
     }
 }

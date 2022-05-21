@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.avoishel.usersnotebook.models.UsersPageResponse
 import com.gmail.avoishel.usersnotebook.repository.UserRepository
+import com.gmail.avoishel.usersnotebook.retrofit.SimpleResponse
 import com.gmail.avoishel.usersnotebook.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -35,9 +36,11 @@ class UserListViewModel  @Inject constructor(
         _userList.postValue(handleUserListResponse(resource))
     }
 
-    private fun handleUserListResponse(response: Response<UsersPageResponse>) : Resource<UsersPageResponse> {
+    //private fun handleUserListResponse(response: Response<UsersPageResponse>) : Resource<UsersPageResponse> {    //SimpleResponse
+    private fun handleUserListResponse(response: SimpleResponse<UsersPageResponse>) : Resource<UsersPageResponse> {
         if(response.isSuccessful){
-            response.body()?.let {
+            //response.body()?.let {
+                val it = response.body
                 userListPage++
                 if (userListResponse == null){
                     userListResponse = it
@@ -48,8 +51,8 @@ class UserListViewModel  @Inject constructor(
                     oldUsers?.addAll(newUsers)
                 }
                 return Resource.Success(userListResponse ?: it)
-            }
+            //}
         }
-        return Resource.Error(response.message())
+        return Resource.Error(response.exception?.message!!)    //  message())
     }
 }
