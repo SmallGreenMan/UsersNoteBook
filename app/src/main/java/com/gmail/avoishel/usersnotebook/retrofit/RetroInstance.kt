@@ -1,6 +1,5 @@
 package com.gmail.avoishel.usersnotebook.retrofit
 
-import okhttp3.OkHttp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -20,7 +19,6 @@ class RetroInstance {
             OkHttpClient.Builder()
                 .addInterceptor(httpLoginInterceptor)
                 .build()
-
         }
 
         private val retrofit by lazy {
