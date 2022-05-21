@@ -1,5 +1,6 @@
 package com.gmail.avoishel.usersnotebook.retrofit
 
+import android.util.Log
 import com.gmail.avoishel.usersnotebook.models.UsersPageResponse
 import retrofit2.Response
 
@@ -14,6 +15,7 @@ class ApiClient(
         return try {
             SimpleResponse.success(apiCall.invoke())
         } catch (e: Exception) {
+            Log.e("ApiClient", "----> safeApiCall Error, e:$e")
             SimpleResponse.failure(e)
         }
     }
