@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">UsersNotebook</string>
+    <string name="aboutAppStr">This is my pet project. Sours code you can find on the link below.
+        \n\n
+        https://github.com/SmallGreenMan/UsersNoteBook
+    </string>
+
+
 </resources>
