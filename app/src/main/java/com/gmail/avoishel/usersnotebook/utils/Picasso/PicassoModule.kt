@@ -1,4 +1,4 @@
-package com.gmail.avoishel.usersnotebook.utils
+package com.gmail.avoishel.usersnotebook.utils.Picasso
 
 import com.squareup.picasso.Picasso
 import dagger.Module

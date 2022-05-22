@@ -9,8 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.databinding.UserInfoFragmentBinding
 import com.gmail.avoishel.usersnotebook.models.UserModel
-import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
-import com.squareup.picasso.Picasso
+import com.gmail.avoishel.usersnotebook.utils.Picasso.PicassoUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
