@@ -13,7 +13,9 @@
             android:id="@+id/action_userListFragment_to_userInfoFragment"
             app:destination="@id/userInfoFragment"
             app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/userInfoFragment"
@@ -37,7 +39,7 @@
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.gmail.avoishel.usersnotebook.ui.fragments.FavoriteFragment"
-        android:label="FavoriteFragment" >
+        android:label="Favorites">
         <action
             android:id="@+id/action_favoriteFragment_to_userInfoFragment"
             app:destination="@id/userInfoFragment"

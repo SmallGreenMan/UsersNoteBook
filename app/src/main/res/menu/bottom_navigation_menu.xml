@@ -7,7 +7,7 @@
         android:iconTint="@color/black"
         />
     <item android:id="@+id/favoriteFragment"
-        android:title="Favorite"
+        android:title="Favorites"
         android:icon="@drawable/ic_baseline_stars_24"
         android:iconTint="@color/black"
         />
