@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gmail.avoishel.usersnotebook.models.UserModel
 import com.gmail.avoishel.usersnotebook.models.UsersPageResponse
 import com.gmail.avoishel.usersnotebook.repository.UserRepository
 import com.gmail.avoishel.usersnotebook.retrofit.SimpleResponse
@@ -54,5 +55,17 @@ class UserListViewModel  @Inject constructor(
             //}
         }
         return Resource.Error(response.exception?.message!!)    //  message())
+    }
+
+
+
+    fun saveUser(user: UserModel) = viewModelScope.launch {
+        userRepository.upsert(user)
+    }
+
+    fun getSavedUsers() = userRepository.getSavedUsers()
+
+    fun deleteUser(user: UserModel) = viewModelScope.launch {
+        userRepository.deleteUser(user)
     }
 }
