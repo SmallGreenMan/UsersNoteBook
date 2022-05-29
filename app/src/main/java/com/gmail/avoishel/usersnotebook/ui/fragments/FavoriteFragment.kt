@@ -46,7 +46,7 @@ class FavoriteFragment: Fragment() {
         setupRecyclerView()
 
         userListViewModel.getSavedUsers().observe(viewLifecycleOwner, Observer { users ->
-            userListAdapter.differ.submitList(users)
+            //userListAdapter.differ.submitList(users)
         })
     }
 
