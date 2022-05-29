@@ -6,12 +6,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.gmail.avoishel.usersnotebook.models.UserModel
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import javax.inject.Inject
 
+//@InstallIn
+//@Module
 @Database(
     entities = [UserModel::class],
     version = 1
 )
-abstract class UserDatabase : RoomDatabase() {
+abstract class UserDatabase  : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
 
