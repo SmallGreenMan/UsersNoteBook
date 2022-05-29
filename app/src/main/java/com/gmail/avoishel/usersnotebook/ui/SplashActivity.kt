@@ -10,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.gmail.avoishel.usersnotebook.databinding.ActivitySplashBinding
+import kotlinx.coroutines.*
 
 class SplashActivity : AppCompatActivity() {
 
@@ -20,12 +21,18 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         supportActionBar?.hide()
         setContentView(binding.root)
-
-        Handler().postDelayed({
+            //todo студия сама зачеркивает хендлер
+        /*Handler().postDelayed({
             val intent = Intent(this@SplashActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000)
+        }, 3000)*/
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(1500)
+            val intent = Intent(this@SplashActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
     }
 

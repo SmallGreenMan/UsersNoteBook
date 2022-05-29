@@ -6,6 +6,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetroInstance {
+
+    //todo где то должен быть модуль хилта.. и этот класс совсем подругому будет выглядеть уже
+
     companion object {
 
         private const val BASE_URL = "https://reqres.in/"

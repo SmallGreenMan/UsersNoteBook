@@ -9,3 +9,4 @@ data class UserModel(
     val last_name: String?,
     val avatar: String?
 ) : Serializable
+//todo а почему не parcelable

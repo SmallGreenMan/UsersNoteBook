@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gmail.avoishel.usersnotebook.R
 
+// todo в активити у тебя есть аннотация для хилта, а тут нет, вот это ты по полной используешь мощь хилта))
+//
+
 class AboutFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

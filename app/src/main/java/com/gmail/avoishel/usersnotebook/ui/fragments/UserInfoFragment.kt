@@ -14,6 +14,10 @@ import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+// todo  а где для этого класса вьюмодель? наоборот ладно у активити не будет, он как контейнер
+//  я пропустил в прошлый раз, хочу для этого класса получить данные по айди юзера, часто бывает что в листе не всегда все данные на юзера и приходиться делать запрос по айди
+//  вот как ты его сделаешь без вью модели?
+
 @AndroidEntryPoint
 class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
 
