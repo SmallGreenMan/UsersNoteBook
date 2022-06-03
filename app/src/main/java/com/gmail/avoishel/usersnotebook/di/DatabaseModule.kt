@@ -17,11 +17,7 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(application: Application, callback: UserDatabase.Callback): UserDatabase {
-        return Room.databaseBuilder(
-                application,
-                UserDatabase::class.java,
-                "user_db"
-            )
+        return Room.databaseBuilder(application, UserDatabase::class.java, "user_db")
             .addCallback(callback)
             .build()
     }

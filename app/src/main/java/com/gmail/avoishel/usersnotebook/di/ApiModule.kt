@@ -1,5 +1,6 @@
 package com.gmail.avoishel.usersnotebook.di
 
+import com.gmail.avoishel.usersnotebook.data.retrofit.ApiClient
 import com.gmail.avoishel.usersnotebook.data.retrofit.RetroServiceInterface
 import com.gmail.avoishel.usersnotebook.utils.Constants.Companion.BASE_URL
 import dagger.Module
@@ -44,5 +45,11 @@ object ApiModule {
     @Singleton
     fun provideUserApi(retrofit: Retrofit): RetroServiceInterface {
         return retrofit.create(RetroServiceInterface::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiClient(userApi: RetroServiceInterface): ApiClient {
+        return ApiClient(userApi)
     }
 }

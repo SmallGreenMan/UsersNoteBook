@@ -26,10 +26,6 @@ class UserListFragment : Fragment() {
     private var _binding: UserListFragmentBinding? = null
     private val binding get() = _binding!!
 
-//    val userListViewModel: UserListViewModel by lazy {
-//        ViewModelProvider(this).get(UserListViewModel::class.java)
-//    }
-
     private val userListViewModel: UserListViewModel by viewModels()
 
     lateinit var userListAdapter: UsersListAdapter

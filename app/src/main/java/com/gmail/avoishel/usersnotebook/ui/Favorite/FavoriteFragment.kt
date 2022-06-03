@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.gmail.avoishel.usersnotebook.adapter.UsersListAdapter
 import com.gmail.avoishel.usersnotebook.databinding.FavoriteFragmentBinding
 import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class FavoriteFragment: Fragment() {
 
     @Inject
