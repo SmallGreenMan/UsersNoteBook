@@ -1,4 +1,4 @@
-package com.gmail.avoishel.usersnotebook.data.models
+package com.gmail.avoishel.usersnotebook.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

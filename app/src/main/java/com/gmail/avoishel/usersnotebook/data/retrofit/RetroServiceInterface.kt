@@ -1,6 +1,6 @@
 package com.gmail.avoishel.usersnotebook.data.retrofit
 
-import com.gmail.avoishel.usersnotebook.data.models.UsersPageResponse
+import com.gmail.avoishel.usersnotebook.models.UsersPageResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

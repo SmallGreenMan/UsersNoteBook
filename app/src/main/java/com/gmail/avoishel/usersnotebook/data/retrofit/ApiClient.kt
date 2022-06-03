@@ -1,7 +1,7 @@
 package com.gmail.avoishel.usersnotebook.data.retrofit
 
 import android.util.Log
-import com.gmail.avoishel.usersnotebook.data.models.UsersPageResponse
+import com.gmail.avoishel.usersnotebook.models.UsersPageResponse
 import retrofit2.Response
 
 class ApiClient(

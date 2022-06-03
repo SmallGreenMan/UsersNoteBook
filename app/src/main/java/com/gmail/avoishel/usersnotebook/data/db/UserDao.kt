@@ -2,7 +2,7 @@ package com.gmail.avoishel.usersnotebook.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.gmail.avoishel.usersnotebook.data.models.UserModel
+import com.gmail.avoishel.usersnotebook.models.UserModel
 
 @Dao
 interface UserDao {

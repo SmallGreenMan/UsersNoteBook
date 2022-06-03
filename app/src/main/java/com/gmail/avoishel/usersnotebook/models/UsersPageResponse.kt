@@ -1,4 +1,4 @@
-package com.gmail.avoishel.usersnotebook.data.models
+package com.gmail.avoishel.usersnotebook.models
 
 data class UsersPageResponse(
 

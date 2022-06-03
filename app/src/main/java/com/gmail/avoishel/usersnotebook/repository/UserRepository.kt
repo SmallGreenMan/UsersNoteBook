@@ -1,7 +1,7 @@
 package com.gmail.avoishel.usersnotebook.repository
 
 import com.gmail.avoishel.usersnotebook.data.db.UserDao
-import com.gmail.avoishel.usersnotebook.data.models.UserModel
+import com.gmail.avoishel.usersnotebook.models.UserModel
 import com.gmail.avoishel.usersnotebook.data.retrofit.RetroServiceInterface
 import javax.inject.Inject
 
