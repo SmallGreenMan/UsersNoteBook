@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.models.UserModel
 import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
+import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHolder>() {
@@ -38,13 +39,13 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
         holder.apply {
             name.text = "${user.first_name} ${user.last_name}"
 
-            picassoUtil.loadImage(user.avatar!!,imgView)
+//            picassoUtil.loadImage(user.avatar!!,imgView)
 
-//            Picasso.get()
-//                .load(user.avatar)
-//                .placeholder(R.drawable.ic_placeholder_foreground)
-//                .error(R.drawable.ic_placeholder_error_foreground)
-//                .into(imgView)
+            Picasso.get()
+                .load(user.avatar)
+                .placeholder(R.drawable.ic_placeholder_foreground)
+                .error(R.drawable.ic_placeholder_error_foreground)
+                .into(imgView)
 
             itemView.setOnClickListener {
                 onItemClickListener?.let { it(user) }
