@@ -9,10 +9,14 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.avoishel.usersnotebook.R
-import com.gmail.avoishel.usersnotebook.models.UserModel
-import com.squareup.picasso.Picasso
+import com.gmail.avoishel.usersnotebook.data.models.UserModel
+import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
+import javax.inject.Inject
 
 class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHolder>() {
+
+    @Inject
+    lateinit var picassoUtil: PicassoUtil
 
     private var userList: List<UserModel>? = null
     private var onItemClickListener: ((UserModel) -> Unit)? = null
@@ -34,13 +38,13 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
         holder.apply {
             name.text = "${user.first_name} ${user.last_name}"
 
-//            picassoUtil.loadImage(user.avatar!!,imgView)
+            picassoUtil.loadImage(user.avatar!!,imgView)
 
-            Picasso.get()
-                .load(user.avatar)
-                .placeholder(R.drawable.ic_placeholder_foreground)
-                .error(R.drawable.ic_placeholder_error_foreground)
-                .into(imgView)
+//            Picasso.get()
+//                .load(user.avatar)
+//                .placeholder(R.drawable.ic_placeholder_foreground)
+//                .error(R.drawable.ic_placeholder_error_foreground)
+//                .into(imgView)
 
             itemView.setOnClickListener {
                 onItemClickListener?.let { it(user) }

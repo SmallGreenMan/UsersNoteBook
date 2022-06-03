@@ -20,15 +20,10 @@ class FavoriteFragment: Fragment() {
     private var _binding: FavoriteFragmentBinding? = null
     private val binding get() = _binding!!
 
-//    val favoriteViewModel: UserListViewModel by lazy {
-//        ViewModelProvider(this).get(UserListViewModel::class.java)
-//    }
 
     private val favoriteViewModel: FavoriteViewModel by viewModels()
 
     lateinit var userListAdapter: UsersListAdapter
-
-    //private val args: FavoriteFragmentBinding by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,12 +38,8 @@ class FavoriteFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
-//        favoriteViewModel.getSavedUsers().observe(viewLifecycleOwner, Observer { users ->
-//            userListAdapter.differ.submitList(users)
-//        })
-
         favoriteViewModel.getSavedUsers().observe(viewLifecycleOwner) {
-            //userListAdapter.differ.submitList(it)
+            userListAdapter.differ.submitList(it)
         }
     }
 
@@ -57,7 +48,6 @@ class FavoriteFragment: Fragment() {
         binding.rvUsersList.apply {
             adapter = userListAdapter
             layoutManager = GridLayoutManager(activity, 2)
-//            addOnScrollListener(this@FavoriteFragment)
         }
     }
 }

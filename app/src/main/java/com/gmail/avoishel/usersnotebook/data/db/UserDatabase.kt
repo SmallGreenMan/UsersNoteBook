@@ -3,7 +3,7 @@ package com.gmail.avoishel.usersnotebook.data.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.gmail.avoishel.usersnotebook.di.ApplicationScope
-import com.gmail.avoishel.usersnotebook.models.UserModel
+import com.gmail.avoishel.usersnotebook.data.models.UserModel
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import javax.inject.Provider
