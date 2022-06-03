@@ -1,17 +1,16 @@
-package com.gmail.avoishel.usersnotebook.ui.fragments
+package com.gmail.avoishel.usersnotebook.ui.userInfo
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.databinding.UserInfoFragmentBinding
 import com.gmail.avoishel.usersnotebook.models.UserModel
-import com.gmail.avoishel.usersnotebook.ui.UserListViewModel
-import com.gmail.avoishel.usersnotebook.utils.Picasso.PicassoUtil
+import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -22,9 +21,11 @@ class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
     @Inject
     lateinit var picassoUtil: PicassoUtil
 
-    val userListViewModel: UserListViewModel by lazy {
-        ViewModelProvider(this).get(UserListViewModel::class.java)
-    }
+//    val userInfoViewModel: UserListViewModel by lazy {
+//        ViewModelProvider(this).get(UserListViewModel::class.java)
+//    }
+
+    private val userInfoViewModel: UserInfoViewModel by viewModels()
 
     private var _binding: UserInfoFragmentBinding? = null
     private val binding get() = _binding!!
@@ -52,7 +53,7 @@ class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
         showData(user)
 
         binding.fab.setOnClickListener {
-            userListViewModel.saveUser(user)
+            userInfoViewModel.saveUser(user)
             Snackbar.make(view, "User saved in favorites", Snackbar.LENGTH_SHORT).show()
         }
     }

@@ -1,18 +1,12 @@
-package com.gmail.avoishel.usersnotebook.db
+package com.gmail.avoishel.usersnotebook.data.db
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import com.gmail.avoishel.usersnotebook.di.ApplicationScope
 import com.gmail.avoishel.usersnotebook.models.UserModel
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.EntryPoint
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
-import javax.inject.Singleton
+import javax.inject.Provider
 
 
 @Database(
@@ -22,6 +16,11 @@ import javax.inject.Singleton
 abstract class UserDatabase  : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
+
+    class Callback @Inject constructor(
+        private val database: Provider<UserDatabase>,
+        @ApplicationScope private val applicationScope: CoroutineScope
+    ) : RoomDatabase.Callback()
 
 //    companion object {
 //        @Volatile

@@ -1,4 +1,4 @@
-package com.gmail.avoishel.usersnotebook.retrofit
+package com.gmail.avoishel.usersnotebook.data.retrofit
 
 import android.util.Log
 import com.gmail.avoishel.usersnotebook.models.UsersPageResponse

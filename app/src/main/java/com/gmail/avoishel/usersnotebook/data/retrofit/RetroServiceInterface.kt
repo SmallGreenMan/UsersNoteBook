@@ -1,4 +1,4 @@
-package com.gmail.avoishel.usersnotebook.retrofit
+package com.gmail.avoishel.usersnotebook.data.retrofit
 
 import com.gmail.avoishel.usersnotebook.models.UsersPageResponse
 import retrofit2.Response
@@ -11,5 +11,5 @@ interface RetroServiceInterface {
     suspend fun getUsersList(
         @Query("page")
         pageNumber: Int = 1
-    ): Response<UsersPageResponse> //Call<UsersPageResponse>
+    ): Response<UsersPageResponse>
 }

@@ -1,4 +1,4 @@
-package com.gmail.avoishel.usersnotebook.utils.Picasso
+package com.gmail.avoishel.usersnotebook.utils
 
 import android.widget.ImageView
 import com.gmail.avoishel.usersnotebook.R

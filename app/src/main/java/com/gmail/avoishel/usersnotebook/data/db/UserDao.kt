@@ -1,4 +1,4 @@
-package com.gmail.avoishel.usersnotebook.db
+package com.gmail.avoishel.usersnotebook.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -8,7 +8,7 @@ import com.gmail.avoishel.usersnotebook.models.UserModel
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upSetr(user: UserModel): Long
+    suspend fun insert(user: UserModel): Long
 
     @Query("SELECT * FROM users")
     fun getAllUsers(): LiveData<List<UserModel>>

@@ -1,19 +1,15 @@
-package com.gmail.avoishel.usersnotebook.ui.fragments
+package com.gmail.avoishel.usersnotebook.ui.Favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.adapter.UsersListAdapter
 import com.gmail.avoishel.usersnotebook.databinding.FavoriteFragmentBinding
-import com.gmail.avoishel.usersnotebook.ui.UserListViewModel
-import com.gmail.avoishel.usersnotebook.utils.Picasso.PicassoUtil
+import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
 import javax.inject.Inject
 
 class FavoriteFragment: Fragment() {
@@ -24,9 +20,11 @@ class FavoriteFragment: Fragment() {
     private var _binding: FavoriteFragmentBinding? = null
     private val binding get() = _binding!!
 
-    val userListViewModel: UserListViewModel by lazy {
-        ViewModelProvider(this).get(UserListViewModel::class.java)
-    }
+//    val favoriteViewModel: UserListViewModel by lazy {
+//        ViewModelProvider(this).get(UserListViewModel::class.java)
+//    }
+
+    private val favoriteViewModel: FavoriteViewModel by viewModels()
 
     lateinit var userListAdapter: UsersListAdapter
 
@@ -45,9 +43,13 @@ class FavoriteFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
-        userListViewModel.getSavedUsers().observe(viewLifecycleOwner, Observer { users ->
-            //userListAdapter.differ.submitList(users)
-        })
+//        favoriteViewModel.getSavedUsers().observe(viewLifecycleOwner, Observer { users ->
+//            userListAdapter.differ.submitList(users)
+//        })
+
+        favoriteViewModel.getSavedUsers().observe(viewLifecycleOwner) {
+            //userListAdapter.differ.submitList(it)
+        }
     }
 
     private fun setupRecyclerView() {
@@ -55,7 +57,7 @@ class FavoriteFragment: Fragment() {
         binding.rvUsersList.apply {
             adapter = userListAdapter
             layoutManager = GridLayoutManager(activity, 2)
-            //addOnScrollListener(this@FavoriteFragment.s)
+//            addOnScrollListener(this@FavoriteFragment)
         }
     }
 }

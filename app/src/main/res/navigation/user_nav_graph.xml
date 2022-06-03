@@ -7,19 +7,17 @@
 
     <fragment
         android:id="@+id/userListFragment"
-        android:name="com.gmail.avoishel.usersnotebook.ui.fragments.UserListFragment"
+        android:name="com.gmail.avoishel.usersnotebook.ui.UserList.UserListFragment"
         android:label="User`s list">
         <action
             android:id="@+id/action_userListFragment_to_userInfoFragment"
             app:destination="@id/userInfoFragment"
             app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_out_right"
-            app:popExitAnim="@android:anim/slide_in_left" />
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/userInfoFragment"
-        android:name="com.gmail.avoishel.usersnotebook.ui.fragments.UserInfoFragment"
+        android:name="com.gmail.avoishel.usersnotebook.ui.userInfo.UserInfoFragment"
         android:label="User`s info">
         <action
             android:id="@+id/action_userInfoFragment_to_userListFragment"
@@ -38,7 +36,7 @@
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.gmail.avoishel.usersnotebook.ui.fragments.FavoriteFragment"
+        android:name="com.gmail.avoishel.usersnotebook.ui.Favorite.FavoriteFragment"
         android:label="Favorites">
         <action
             android:id="@+id/action_favoriteFragment_to_userInfoFragment"
