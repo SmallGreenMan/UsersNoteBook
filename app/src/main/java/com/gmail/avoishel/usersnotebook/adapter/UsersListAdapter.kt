@@ -63,8 +63,8 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
     }
 
     inner class UserItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById<TextView>(R.id.nameTextView)
-        val imgView: ImageView = view.findViewById<ImageView>(R.id.userImage)
+        val name: TextView = view.findViewById(R.id.nameTextView)
+        val imgView: ImageView = view.findViewById(R.id.userImage)
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<UserModel>() {

@@ -42,7 +42,7 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideNewsApi(retrofit: Retrofit): RetroServiceInterface {
+    fun provideUserApi(retrofit: Retrofit): RetroServiceInterface {
         return retrofit.create(RetroServiceInterface::class.java)
     }
 }
