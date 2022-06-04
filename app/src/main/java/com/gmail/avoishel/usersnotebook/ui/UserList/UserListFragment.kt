@@ -96,12 +96,6 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // val userRepository = UserRepository()
-        // val userListProviderFactory = UserListViewModelProviderFactory(userRepository)
-        // userListViewModel =
-        //    ViewModelProvider(this, userListProviderFactory).get(UserListViewModel::class.java)
-
-
         setupRecyclerView()
 
         userListAdapter.setOnItemClickListener {

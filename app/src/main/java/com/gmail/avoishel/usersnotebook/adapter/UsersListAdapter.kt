@@ -63,7 +63,7 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
     }
 
     inner class UserItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById(R.id.nameTextView) //todo в стрелках уже не пишем, тебе студия сама подсвечивает
+        val name: TextView = view.findViewById(R.id.nameTextView) //todo в стрелках уже не пишем, тебе студия сама подсвечивает // ---> Принял
         val imgView: ImageView = view.findViewById(R.id.userImage)
     }
 
