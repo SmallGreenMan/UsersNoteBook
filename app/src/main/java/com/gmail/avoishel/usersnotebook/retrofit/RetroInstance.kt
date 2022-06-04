@@ -1,5 +1,7 @@
 package com.gmail.avoishel.usersnotebook.retrofit
 
+import com.gmail.avoishel.usersnotebook.data.retrofit.ApiClient
+import com.gmail.avoishel.usersnotebook.data.retrofit.RetroServiceInterface
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

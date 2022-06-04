@@ -1,4 +1,4 @@
-package com.gmail.avoishel.usersnotebook.utils
+package com.gmail.avoishel.usersnotebook.di
 
 import com.squareup.picasso.Picasso
 import dagger.Module
@@ -8,7 +8,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-class PicassoModule {
+object PicassoModule {
     @Provides
     fun providesPicasso(): Picasso {
         return Picasso.get()

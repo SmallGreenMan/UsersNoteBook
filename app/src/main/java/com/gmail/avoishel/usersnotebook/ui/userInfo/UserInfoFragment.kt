@@ -1,16 +1,17 @@
-package com.gmail.avoishel.usersnotebook.ui.fragments
+package com.gmail.avoishel.usersnotebook.ui.userInfo
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.databinding.UserInfoFragmentBinding
 import com.gmail.avoishel.usersnotebook.models.UserModel
 import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
-import com.squareup.picasso.Picasso
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,6 +24,8 @@ class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
 
     @Inject
     lateinit var picassoUtil: PicassoUtil
+
+    private val userInfoViewModel: UserInfoViewModel by viewModels()
 
     private var _binding: UserInfoFragmentBinding? = null
     private val binding get() = _binding!!
@@ -48,6 +51,11 @@ class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
         val user = args.user
 
         showData(user)
+
+        binding.fab.setOnClickListener {
+            userInfoViewModel.saveUser(user)
+            Snackbar.make(view, "User saved in favorites", Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     private fun showData(user: UserModel){
@@ -55,10 +63,5 @@ class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
         binding.emailTextView.text = user.email
 
         picassoUtil.loadImage(user.avatar!!, binding.headerImageView)
-//        Picasso.get()
-//            .load(user.avatar)
-//            .placeholder(R.drawable.ic_placeholder_foreground)
-//            .error(R.drawable.ic_placeholder_error_foreground)
-//            .into(binding.headerImageView)
     }
 }
