@@ -12,10 +12,12 @@ import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.models.UserModel
 import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
 import com.squareup.picasso.Picasso
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHolder>() {
+
+    @Inject
+    lateinit var picassoUtil: PicassoUtil
 
     private var userList: List<UserModel>? = null
     private var onItemClickListener: ((UserModel) -> Unit)? = null
@@ -61,8 +63,8 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
     }
 
     inner class UserItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById(R.id.nameTextView) //todo в стрелках уже не пишем, тебе студия сама подсвечивает
-        val imgView: ImageView = view.findViewById<ImageView>(R.id.userImage)
+        val name: TextView = view.findViewById(R.id.nameTextView) //todo в стрелках уже не пишем, тебе студия сама подсвечивает // ---> Принял
+        val imgView: ImageView = view.findViewById(R.id.userImage)
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<UserModel>() {

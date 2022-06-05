@@ -1,26 +1,21 @@
-package com.gmail.avoishel.usersnotebook.retrofit
+package com.gmail.avoishel.usersnotebook.data.retrofit
 
-import com.gmail.avoishel.usersnotebook.data.retrofit.ApiClient
-import com.gmail.avoishel.usersnotebook.data.retrofit.RetroServiceInterface
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetroInstance {
-
-    //todo где то должен быть модуль хилта.. и этот класс совсем подругому будет выглядеть уже // ---> По сути RetroInstance при спользовании hilt нам не нужен не?
-//
 //    companion object {
 //
 //        private const val BASE_URL = "https://reqres.in/"
 //
 //        private val httpLoginInterceptor by lazy {
-//            HttpLoggingInterceptor()
+//            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 //        }
 //
 //        private val okHttpClient by lazy {
-//            httpLoginInterceptor.level = HttpLoggingInterceptor.Level.BODY
+//            //httpLoginInterceptor.level = HttpLoggingInterceptor.Level.BODY
 //            OkHttpClient.Builder()
 //                .addInterceptor(httpLoginInterceptor)
 //                .build()

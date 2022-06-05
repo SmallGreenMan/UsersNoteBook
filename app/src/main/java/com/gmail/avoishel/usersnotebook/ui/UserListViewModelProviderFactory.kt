@@ -3,6 +3,7 @@ package com.gmail.avoishel.usersnotebook.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.gmail.avoishel.usersnotebook.repository.UserRepository
+import com.gmail.avoishel.usersnotebook.ui.UserList.UserListViewModel
 import javax.inject.Inject
 
 

@@ -1,4 +1,4 @@
-package com.gmail.avoishel.usersnotebook.retrofit
+package com.gmail.avoishel.usersnotebook.data.retrofit
 
 import retrofit2.Response
 import java.lang.Exception

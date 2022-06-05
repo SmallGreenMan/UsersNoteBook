@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.databinding.ActivityMainBinding
 import com.gmail.avoishel.usersnotebook.repository.UserRepository
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->  }
         NavigationUI.setupWithNavController(binding.navView, navController)
+
+        binding.bottomNavigationView.setupWithNavController(navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
