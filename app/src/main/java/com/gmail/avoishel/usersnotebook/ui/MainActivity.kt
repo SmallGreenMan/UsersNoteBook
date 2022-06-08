@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setupWithNavController(navController)
 
+        // --- hiding bottomNavigationMenu with some fragments
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.userListFragment -> showBottomNav()

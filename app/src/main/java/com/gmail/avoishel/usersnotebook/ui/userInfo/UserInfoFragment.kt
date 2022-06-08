@@ -1,6 +1,8 @@
 package com.gmail.avoishel.usersnotebook.ui.userInfo
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +34,8 @@ class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
 
     private val args: UserInfoFragmentArgs by navArgs()
 
+    private val TAG = "UserInfoFragment"
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,8 +57,21 @@ class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
         showData(user)
 
         binding.fab.setOnClickListener {
-            userInfoViewModel.saveUser(user)
-            Snackbar.make(view, "User saved in favorites", Snackbar.LENGTH_SHORT).show()
+            if (user.favorite) {
+                userInfoViewModel.deleteUser(user)
+                Snackbar.make(view, "User deleted from favorites", Snackbar.LENGTH_SHORT).show()
+            } else {
+                user.favorite = true
+                userInfoViewModel.saveUser(user)
+                Snackbar.make(view, "User saved in favorites", Snackbar.LENGTH_SHORT).show()
+            }
+
+            userInfoViewModel.findUserByIdInDb(user.id!!).observe(viewLifecycleOwner) {
+                Log.i(TAG, " ---> findUserByIdInDb : $it")
+
+                user.favorite = it.isNotEmpty()
+                showFavoriteButtonFb(user.favorite)
+            }
         }
     }
 
@@ -63,5 +80,17 @@ class UserInfoFragment: Fragment(R.layout.user_info_fragment) {
         binding.emailTextView.text = user.email
 
         picassoUtil.loadImage(user.avatar!!, binding.headerImageView)
+
+        showFavoriteButtonFb(user.favorite)
+    }
+
+    private fun showFavoriteButtonFb(state: Boolean){
+        if (state) {
+            binding.fab.setImageResource(R.drawable.ic_baseline_star_24)
+            binding.fab.setColorFilter(Color.YELLOW)
+        } else {
+            binding.fab.setImageResource(R.drawable.ic_baseline_star_border_24)
+            binding.fab.setColorFilter(Color.WHITE)
+        }
     }
 }
