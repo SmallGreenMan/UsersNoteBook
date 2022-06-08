@@ -28,4 +28,6 @@ class UserRepository @Inject constructor(
 
     suspend fun deleteUser(user: UserModel) = db.deleteUser(user)
 
+    fun findUserById(id: Int) = db.findUserById(id)
+
 }

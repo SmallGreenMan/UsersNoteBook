@@ -1,10 +1,12 @@
 package com.gmail.avoishel.usersnotebook.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +14,7 @@ import com.gmail.avoishel.usersnotebook.R
 import com.gmail.avoishel.usersnotebook.models.UserModel
 import com.gmail.avoishel.usersnotebook.utils.PicassoUtil
 import com.squareup.picasso.Picasso
+import java.security.AccessController.getContext
 import javax.inject.Inject
 
 class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHolder>() {
@@ -21,6 +24,7 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
 
     private var userList: List<UserModel>? = null
     private var onItemClickListener: ((UserModel) -> Unit)? = null
+    private var onFavoriteClickListener: ((UserModel) -> Unit)? = null
 
     fun setUserList(userList: List<UserModel>?) {
         this.userList = userList
@@ -39,7 +43,13 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
         holder.apply {
             name.text = "${user.first_name} ${user.last_name}"
 
-//            picassoUtil.loadImage(user.avatar!!,imgView)
+            if (user.favorite) {
+                favorite.setImageResource(R.drawable.ic_baseline_star_24)
+                favorite.setColorFilter(Color.YELLOW)
+            } else {
+                favorite.setImageResource(R.drawable.ic_baseline_star_border_24)
+                favorite.setColorFilter(Color.WHITE)
+            }
 
             Picasso.get()
                 .load(user.avatar)
@@ -49,6 +59,10 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
 
             itemView.setOnClickListener {
                 onItemClickListener?.let { it(user) }
+            }
+
+            favorite.setOnClickListener{
+                onFavoriteClickListener?.let { it(user) }
             }
 
         }
@@ -62,9 +76,14 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
         onItemClickListener = listener
     }
 
+    fun setFavoriteClickListener(listener: (UserModel) -> Unit) {
+        onFavoriteClickListener = listener
+    }
+
     inner class UserItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.nameTextView) //todo в стрелках уже не пишем, тебе студия сама подсвечивает // ---> Принял
         val imgView: ImageView = view.findViewById(R.id.userImage)
+        val favorite: ImageView = view.findViewById(R.id.favoriteButton)
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<UserModel>() {

@@ -11,31 +11,14 @@ import javax.inject.Provider
 
 @Database(
     entities = [UserModel::class],
-    version = 1
+    version = 3
 )
 abstract class UserDatabase  : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
 
-    class Callback @Inject constructor(
-        private val database: Provider<UserDatabase>,
-        @ApplicationScope private val applicationScope: CoroutineScope
-    ) : RoomDatabase.Callback()
-
-//    companion object {
-//        @Volatile
-//        private var instance: UserDatabase? = null
-//        private val LOCK = Any()
-//
-//        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
-//            instance ?: providerUserDatabase(context).also { instance = it }
-//        }
-//
-//        private fun providerUserDatabase(context: Context) =
-//            Room.databaseBuilder(
-//                context.applicationContext,
-//                UserDatabase::class.java,
-//                "user_db.db"
-//            ).build()
-//    }
+//    class Callback @Inject constructor(
+//        private val database: Provider<UserDatabase>,
+//        @ApplicationScope private val applicationScope: CoroutineScope
+//    ) : RoomDatabase.Callback()
 }

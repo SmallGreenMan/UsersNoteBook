@@ -2,6 +2,8 @@ package com.gmail.avoishel.usersnotebook.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -28,6 +30,23 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.navView, navController)
 
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        // --- hiding bottomNavigationMenu with some fragments
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.userListFragment -> showBottomNav()
+                R.id.favoriteFragment -> showBottomNav()
+                else -> hideBottomNav()
+            }
+        }
+    }
+
+    private fun showBottomNav() {
+        binding.bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    private fun hideBottomNav() {
+        binding.bottomNavigationView.visibility = View.GONE
     }
 
     override fun onSupportNavigateUp(): Boolean {

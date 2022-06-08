@@ -13,6 +13,9 @@ interface UserDao {
     @Query("SELECT * FROM users")
     fun getAllUsers(): LiveData<List<UserModel>>
 
+    @Query("SELECT * FROM users WHERE id = :userId")
+    fun findUserById(userId: Int): LiveData<List<UserModel>>
+
     @Delete
     suspend fun deleteUser(user: UserModel)
 }
