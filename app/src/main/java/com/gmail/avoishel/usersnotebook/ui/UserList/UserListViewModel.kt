@@ -18,6 +18,8 @@ class UserListViewModel  @Inject constructor(
     private val userRepository: UserRepository
 ): ViewModel() {
 
+    var userInDbLiveData = MutableLiveData<List<UserModel>>()
+
     private val _userList = MutableLiveData<Resource<UsersPageResponse>>()
     val userList: MutableLiveData<Resource<UsersPageResponse>> = _userList
 
@@ -63,4 +65,6 @@ class UserListViewModel  @Inject constructor(
     fun deleteUser(user: UserModel) = viewModelScope.launch {
         userRepository.deleteUser(user)
     }
+
+    fun findUserByIdInDb(id: Int) = userRepository.findUserById(id)
 }

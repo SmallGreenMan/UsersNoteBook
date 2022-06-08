@@ -15,6 +15,8 @@ data class UserModel(
     val email: String?,
     val first_name: String?,
     val last_name: String?,
-    val avatar: String?
+    val avatar: String?,
+
+    var favorite: Boolean
 ) : Serializable
 //todo а почему не parcelable
