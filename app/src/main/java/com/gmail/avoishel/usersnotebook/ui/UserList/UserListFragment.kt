@@ -164,6 +164,7 @@ class UserListFragment : Fragment() {
         })
     }
 
+    // --- Getting data form db and compering with data in memory in oder to set the favorite variable
     private fun chekUserInDb(userList: List<UserModel>) {
 
         userListViewModel.getSavedUsers().observe(viewLifecycleOwner) {
@@ -173,7 +174,6 @@ class UserListFragment : Fragment() {
             }
 
             Log.i(TAG, " --- > UsersList after comparison with db: ${userList.joinToString()}")
-            //userListAdapter.differ.submitList(userList)
             userListViewModel.userInDbLiveData.postValue(userList)
         }
     }

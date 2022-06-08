@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">UsersNotebook</string>
-    <string name="aboutAppStr">This is my pet project. Sours code you can find on the link below.
+    <string name="aboutAppStr">This is a simple user contact book App build on MVVM pattern.
         \n\n
-        https://github.com/SmallGreenMan/UsersNoteBook
+        The App is using the Reqres Api (https://reqres.in/) as a data source.
+        \n\n
+        App build with following technologies: Kotlin, View Model, Live Data, Jetpack Navigation,
+        Retrofit, Picasso, Coroutines, Room, Hilt.
+        \n\n
+        App still in development process.
     </string>
     <string name="title_activity_splash">SplashActivity</string>
     <!-- Strings used for fragments for navigation -->
