@@ -24,6 +24,7 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
 
     private var userList: List<UserModel>? = null
     private var onItemClickListener: ((UserModel) -> Unit)? = null
+    private var onFavoriteClickListener: ((UserModel) -> Unit)? = null
 
     fun setUserList(userList: List<UserModel>?) {
         this.userList = userList
@@ -50,8 +51,6 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
                 favorite.setColorFilter(Color.WHITE)
             }
 
-//            picassoUtil.loadImage(user.avatar!!,imgView)
-
             Picasso.get()
                 .load(user.avatar)
                 .placeholder(R.drawable.ic_placeholder_foreground)
@@ -60,6 +59,10 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
 
             itemView.setOnClickListener {
                 onItemClickListener?.let { it(user) }
+            }
+
+            favorite.setOnClickListener{
+                onFavoriteClickListener?.let { it(user) }
             }
 
         }
@@ -71,6 +74,10 @@ class UsersListAdapter() : RecyclerView.Adapter<UsersListAdapter.UserItemViewHol
 
     fun setOnItemClickListener(listener: (UserModel) -> Unit) {
         onItemClickListener = listener
+    }
+
+    fun setFavoriteClickListener(listener: (UserModel) -> Unit) {
+        onFavoriteClickListener = listener
     }
 
     inner class UserItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
