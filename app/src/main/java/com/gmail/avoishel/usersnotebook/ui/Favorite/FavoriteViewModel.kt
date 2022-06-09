@@ -15,6 +15,12 @@ class FavoriteViewModel  @Inject constructor(
 
     fun getSavedUsers() = userRepository.getSavedUsers()
 
+    fun saveUser(user: UserModel) = viewModelScope.launch {
+        userRepository.insertUser(user)
+    }
+
+    fun findUserByIdInDb(id: Int) = userRepository.findUserById(id)
+
     fun deleteUser(user: UserModel) = viewModelScope.launch {
         userRepository.deleteUser(user)
     }
